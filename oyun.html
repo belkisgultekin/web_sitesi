@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Kurbağa Sinek Yakalama Oyunu</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #b2f57d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial;
+    }
+
+    #game {
+        background-color: #1d6b1d;
+        width: 800px;
+        height: 800px;
+        position: relative;
+    }
+
+    .snake {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        font-size: 20px;
+    }
+
+    .food {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        font-size: 20px;
+    }
+
+    #score {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<div id="game">
+    <div id="score">Skor: 0</div>
+</div>
+
+<script>
+    const game = document.getElementById("game");
+    const scoreBox = document.getElementById("score");
+
+    const boxSize = 20;
+    let snake = [{ x: 200, y: 200 }];
+    let direction = { x: 20, y: 0 };
+    let food = { x: 100, y: 100 };
+    let score = 0;
+
+    function drawSnake() {
+        document.querySelectorAll(".snake").forEach(e => e.remove());
+
+        snake.forEach(part => {
+            const el = document.createElement("div");
+            el.className = "snake";
+            el.style.left = part.x + "px";
+            el.style.top = part.y + "px";
+            el.textContent = "🐸"; // Kurbağa
+            game.appendChild(el);
+        });
+    }
+
+    function drawFood() {
+        let old = document.querySelector(".food");
+        if (old) old.remove();
+
+        const el = document.createElement("div");
+        el.className = "food";
+        el.style.left = food.x + "px";
+        el.style.top = food.y + "px";
+        el.textContent = "🪰"; // Sinek
+        game.appendChild(el);
+    }
+
+    function moveSnake() {
+        const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
+
+        // Çarpma kontrolü
+        if (head.x < 0 || head.x >= 800 || head.y < 0 || head.y >= 800) return reset();
+        if (snake.some(s => s.x === head.x && s.y === head.y)) return reset();
+
+        snake.unshift(head);
+
+        // Yem yeme kontrolü
+        if (head.x === food.x && head.y === food.y) {
+            score++;
+            scoreBox.textContent = "Skor: " + score;
+            placeFood();
+        } else {
+            snake.pop();
+        }
+    }
+
+    function placeFood() {
+        food.x = Math.floor(Math.random() * 40) * 20;
+        food.y = Math.floor(Math.random() * 40) * 20;
+        drawFood();
+    }
+
+    function reset() {
+        alert("Oyun bitti! Skor: " + score);
+        snake = [{ x: 200, y: 200 }];
+        direction = { x: 20, y: 0 };
+        score = 0;
+        scoreBox.textContent = "Skor: 0";
+        placeFood();
+    }
+
+    document.addEventListener("keydown", e => {
+        if (e.key === "ArrowUp" && direction.y === 0) direction = { x: 0, y: -20 };
+        if (e.key === "ArrowDown" && direction.y === 0) direction = { x: 0, y: 20 };
+        if (e.key === "ArrowLeft" && direction.x === 0) direction = { x: -20, y: 0 };
+        if (e.key === "ArrowRight" && direction.x === 0) direction = { x: 20, y: 0 };
+    });
+
+    function gameLoop() {
+        moveSnake();
+        drawSnake();
+        drawFood();
+    }
+
+    placeFood();
+    setInterval(gameLoop, 150);
+</script>
+
+</body>
+</html>
