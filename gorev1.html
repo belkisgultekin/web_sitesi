@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ders Programı - 3 CSS Yöntemi</title>
+
+ 
+  <style>
+   
+    .internal-table {
+      width: 90%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .internal-table th {
+      background: #2f80ed;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    .internal-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    .internal-table tr:nth-child(even){ background: #f7f9fc; }
+    .internal-caption {
+      font-weight: bold;
+      margin-top: 12px;
+    }
+  </style>
+
+ 
+  <link rel="stylesheet" href="external.css" />
+</head>
+<body>
+  <h1>Ders Programı - Aynı tablo, 3 farklı CSS yöntemi</h1>
+
+  
+  <div class="example">
+    <div class="internal-caption">1) Inline CSS</div>
+    <table style="width:90%; border-collapse:collapse; font-family:Arial, sans-serif; box-shadow:0 2px 6px rgba(0,0,0,0.06); margin-top:8px;">
+      <thead>
+        <tr>
+          <th style="background:#27ae60; color:white; padding:10px; text-align:center;">Saat</th>
+          <th style="background:#27ae60; color:white; padding:10px; text-align:center;">Pazartesi</th>
+          <th style="background:#27ae60; color:white; padding:10px; text-align:center;">Salı</th>
+          <th style="background:#27ae60; color:white; padding:10px; text-align:center;">Çarşamba</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">09:00-10:00</td>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">EGT353</td>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">EGT304</td>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">BTE311</td>
+          
+        </tr>
+        <tr>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">10:15-11:15</td>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">BTE307</td>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">BTE427</td>
+          <td style="border:1px solid #ddd; padding:8px; text-align:center;">BTE309</td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="example">
+    <div class="internal-caption">2) Internal CSS</div>
+    <table class="internal-table" aria-label="Ders programı - internal">
+      <thead>
+        <tr>
+          <th>Saat</th>
+          <th>Pazartesi</th>
+          <th>Salı</th>
+          <th>Çarşamba</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>09:00-10:00</td>
+          <td>EGT353</td>
+          <td>EGT304</td>
+          <td>BTE311</td>
+          
+        </tr>
+        <tr>
+          <td>10:15-11:15</td>
+          <td>BTE307</td>
+          <td>BTE427</td>
+          <td>BTE309</td>
+         
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <div class="example">
+    <div class="internal-caption">3) External CSS (external.css)</div>
+    
+    <table class="external-table" aria-label="Ders programı - external">
+      <thead>
+        <tr>
+          <th>Saat</th>
+          <th>Pazartesi</th>
+          <th>Salı</th>
+          <th>Çarşamba</th>
+       
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>09:00-10:00</td>
+          <td>EGT353</td>
+          <td>EGT304</td>
+          <td>BTE311</td>
+        
+        </tr>
+        <tr>
+          <td>10:15-11:15</td>
+          <td>BTE307</td>
+          <td>BTE427</td>
+          <td>BTE309</td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:0.9em; color:#555; margin-top:18px;">
+   
+  </p>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ders Programı</title>
+
+  <!-- BURAYA Internal CSS gelecek -->
+  <style>
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th {
+      background-color: #2f80ed;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f7f9fc;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>2. Kopya – Internal CSS</h2>
+
+  <table>
+    <tr>
+      <th>Saat</th>
+      <th>Pazartesi</th>
+      <th>Salı</th>
+      <th>Çarşamba</th>
+     
+    </tr>
+    <tr>
+        <td>09:00-10:00</td>
+        <td>EGT353</td>
+        <td>EGT304</td>
+        <td>BTE311</td>
+    </tr>
+    <tr>
+       <td>10:15-11:15</td>
+       <td>BTE307</td>
+       <td>BTE427</td>
+       <td>BTE309</td>
+    </tr>
+  </table>
+</body>
+</html>
