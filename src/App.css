@@ -1,38 +1,124 @@
+/* Genel */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.content {
+  min-height: 100vh;
+  padding: 40px;
+  transition: background 0.5s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* 🌫 Varsayılan */
+.default {
+  background: #e0e0e0;
+}
+
+/* ❄ Karlı */
+.snow {
+  background: linear-gradient(#dbeafe, #bfdbfe);
+}
+
+/* 🌧 Yağmurlu */
+.rain {
+  background: linear-gradient(#c7d2fe, #94a3b8);
+}
+
+/* ☀ Güneşli */
+.clear {
+  background: linear-gradient(#fde68a, #facc15);
+}
+
+/* 🌦 Ortak efekt katmanı */
+#effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ❄ Kar taneleri */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: white;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* 🌧 Yağmur damlaları */
+.raindrop {
+  position: absolute;
+  top: -20px;
+  width: 2px;
+  height: 20px;
+  background: rgba(0, 0, 255, 0.5);
+  animation: rain linear infinite;
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes rain {
+  to {
+    transform: translateY(110vh);
+  }
 }
 
-@keyframes App-logo-spin {
+/* ☀ Güneş */
+.sun {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  font-size: 80px;
+  animation: spin 20s linear infinite;
+}
+
+/* 🔄 Güneş dönüşü */
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+/* 🌡 Hava durumu ikonu */
+.weather-icon {
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Kart görünümü (isteğe bağlı ama şık durur) */
+.card {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 300px;
+  margin: 20px auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.footer {
+  background-color: #1f2933;
+  color: #ffffff;
+  padding: 15px 20px;
+  font-size: 14px;
+
+  /* ORTALAMA */
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* yatay ortalama */
+  justify-content: center;  /* dikey ortalama */
+
+  text-align: center;
+  margin-top: 30px;
 }
